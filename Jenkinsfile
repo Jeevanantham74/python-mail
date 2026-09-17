@@ -7,17 +7,18 @@ pipeline {
             steps {
                 git branch: 'main',
                     url: 'https://github.com/Jeevanantham74/python-mail'
+
             }
         }
 
-        stage('Build') {
-            steps {
-                bat 'python -m py_compile app.py'
-
-                echo 'Build successful: app.py compiled with no syntax errors'
-            }
-        }
-
+       stage('Build') {
+    steps {
+        bat 'python --version'
+        bat 'where python'
+        bat 'python -m py_compile app.py'
+        echo 'Build successful: app.py compiled with no syntax errors'
+    }
+}
         stage('Send Notification') {
             steps {
                 mail to: 'student@example.com',
